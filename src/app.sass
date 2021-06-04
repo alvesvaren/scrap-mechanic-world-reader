@@ -7,12 +7,25 @@
     width: 100%
     display: flex
 
+#left-col
+    min-width: 476px
+
+.resize-vertical-divider
+    min-width: 4px
+    height: 100%
+    background-color: $semi-dark-background
+    cursor: ew-resize
+
+#right-col
+    flex: 1
+
 .tabbed
     background-color: $semi-dark-background
     list-style: none
     display: flex
     padding: 0
     margin: 0
+    user-select: none
     padding-top: 16px
     text-transform: uppercase
     li
@@ -33,7 +46,7 @@
         position: relative
         margin: 0 12px
         color: $muted
-            
+
         &::before, &::after
             background-color: inherit
             height: calc(100%)
@@ -64,4 +77,3 @@
             border-color: $accent
             &::after, &::before
                 border-color: inherit
-            
