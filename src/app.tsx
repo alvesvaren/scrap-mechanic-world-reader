@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, NavLink, NavLinkProps, Route, Switch, useLocation, RouteComponentProps } from 'react-router-dom';
+import { NavLink, NavLinkProps, Switch, RouteComponentProps } from 'react-router-dom';
 import './app.sass';
 export interface AppProps extends RouteComponentProps {}
 
