@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Shentox';
+    src: url('Shentox-SemiBold.woff2') format('woff2'),
+        url('Shentox-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Shentox';
+    src: url('Shentox.woff2') format('woff2'),
+        url('Shentox.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Shentox';
+    src: url('Shentox-Bold.woff2') format('woff2'),
+        url('Shentox-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Shentox';
+    src: url('Shentox-Medium.woff2') format('woff2'),
+        url('Shentox-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+

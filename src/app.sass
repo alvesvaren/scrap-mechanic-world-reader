@@ -1,0 +1,67 @@
+@import 'vars.sass'
+
+#app
+    font-size: 1.2rem
+    background-color: $background
+    height: 100%
+    width: 100%
+    display: flex
+
+.tabbed
+    background-color: $semi-dark-background
+    list-style: none
+    display: flex
+    padding: 0
+    margin: 0
+    padding-top: 16px
+    text-transform: uppercase
+    li
+        height: 32px
+        position: relative
+    a
+        text-decoration: none
+        font-weight: 500
+        color: inherit
+        border-bottom: 2px solid transparent
+        background-color: $dark-background
+        border: 2px solid $dark-border
+        border-bottom: none
+        padding-bottom: 6px
+        text-align: center
+        padding: 11px 30px
+        border-radius: 5px
+        position: relative
+        margin: 0 12px
+        color: $muted
+            
+        &::before, &::after
+            background-color: inherit
+            height: calc(100%)
+            position: absolute
+            display: block
+            width: 20px
+            content: ""
+            top: 0px
+        &::before
+            border-left: 2px solid $dark-border
+            border-top-left-radius: 5px
+            transform: skewX(-11.25deg)
+            left: -6px
+        &::after
+            border-right: 2px solid $dark-border
+            border-top-right-radius: 5px
+            transform: skewX(11.25deg)
+            right: -6px
+        &.active
+            background-color: $accent
+            color: $complement
+            border-color: $accent
+            &::after, &::before
+                border-color: inherit
+        &:not(.active):hover
+            background-color: $shine-background
+            color: $accent
+            border-color: $accent
+            &::after, &::before
+                border-color: inherit
+            
