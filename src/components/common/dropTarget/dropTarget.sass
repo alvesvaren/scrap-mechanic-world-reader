@@ -10,7 +10,42 @@
     font-weight: 500
     color: $muted
     cursor: default
+    position: relative
+    overflow: hidden
+    --percentage: 0%
+    &::before
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        content: ""
+        width: var(--percentage)
+        background-color: $accent
+        transition: width 1s, opacity 1s
+        opacity: 0
     &.over
         background-color: $shine-background
         border-color: $accent
         color: $accent
+    &.processing
+        // background-color: $accent
+        border-color: $shine
+        color: transparent
+        border-style: solid
+        &::before
+            transition: width 1s, opacity 0s
+            opacity: 1
+        &::after
+            position: absolute
+            mix-blend-mode: difference;
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            color: $shine
+            text-shadow: 0px 0px 18px $shine-background
+            display: flex
+            justify-content: center
+            align-items: center
+            content: "Uploading file..."
+            z-index: 1
