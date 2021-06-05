@@ -20,7 +20,7 @@ class App extends React.Component<AppProps, AppState> {
     leftColRef: React.Ref<HTMLElement>;
     constructor(props: AppProps) {
         super(props);
-        this.state = { resizing: false, leftSize: getPreference("leftSize") };
+        this.state = { resizing: false, leftSize: getPreference('leftSize') };
         this.leftColRef = React.createRef();
         this.handleDragging = this.handleDragging.bind(this);
         this.HashPreservingNavLink = this.HashPreservingNavLink.bind(this);
@@ -66,7 +66,7 @@ class App extends React.Component<AppProps, AppState> {
     }
 
     componentDidUpdate() {
-        setPreference("leftSize", this.state.leftSize);
+        setPreference('leftSize', this.state.leftSize);
     }
 
     render() {
@@ -91,9 +91,11 @@ class App extends React.Component<AppProps, AppState> {
                             </li>
                         </ul>
                     </nav>
-                    <this.HashRoute path='#file' component={File} />
-                    <this.HashRoute path='#settings' component={Settings} />
-                    <this.HashRoute path='#hierarchy' component={Hierarchy} />
+                    <div id='left-content'>
+                        <this.HashRoute path='#file' component={File} />
+                        <this.HashRoute path='#settings' component={Settings} />
+                        <this.HashRoute path='#hierarchy' component={Hierarchy} />
+                    </div>
                 </aside>
                 <div className='resize-vertical-divider' onMouseDown={() => this.setState({ resizing: true })} />
                 <main id='right-col'>
@@ -113,8 +115,8 @@ class App extends React.Component<AppProps, AppState> {
                             </li>
                         </ul>
                     </nav>
-                    <Route exact path="/">
-                        <Redirect to="/bodies#file" />
+                    <Route exact path='/'>
+                        <Redirect to='/bodies#file' />
                     </Route>
                     <Switch></Switch>
                 </main>

@@ -11,36 +11,15 @@ class Hierarchy extends React.Component<HierarchyProps, HierarchyState> {
         this.state = {};
     }
     render() {
-        // return (
-        //     <ul className='tree'>
-        //         <li>
-        //             <span className='caret'>root</span>
-        //             <ul className='nested'>
-        //                 <li>
-        //                     <span className='caret'>creation1</span>
-        //                     <ul className='nested'>
-        //                         <li>part1</li>
-        //                         <li>part2</li>
-        //                     </ul>
-        //                 </li>
-        //                 <li>
-        //                     <span className='caret'>creation2</span>
-        //                     <ul className='nested'>
-        //                         <li>part1</li>
-        //                         <li>part2</li>
-        //                     </ul>
-        //                 </li>
-        //             </ul>
-
-        //         </li>
-        //     </ul>
-        // );
-
         return (
             <Tree name="root">
                 <TreeNode name='creation1'>
                     <TreeNode name="state">
                         <li>id: hejsan</li>
+                    </TreeNode>
+                    <TreeNode name="part1">
+                        <li>type: block</li>
+                        <li>color: #111aaa</li>
                     </TreeNode>
                 </TreeNode>
             </Tree>
