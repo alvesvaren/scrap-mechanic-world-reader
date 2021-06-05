@@ -22,6 +22,15 @@ class Hierarchy extends React.Component<HierarchyProps, HierarchyState> {
                         <li>color: #111aaa</li>
                     </TreeNode>
                 </TreeNode>
+                <TreeNode name='creation2'>
+                    <TreeNode name="state">
+                        <li>id: hejsan</li>
+                    </TreeNode>
+                    <TreeNode name="part1">
+                        <li>type: block</li>
+                        <li>color: #111aaa</li>
+                    </TreeNode>
+                </TreeNode>
             </Tree>
         );
     }
