@@ -20,23 +20,41 @@ class DropTarget extends React.Component<DropTargetProps, DropTargetState> {
         this.state = { currentlyOver: false, processing: false, percentage: 0 };
     }
 
-    handleDrop(event: React.DragEvent<HTMLDivElement>) {
+    async handleDrop(event: React.DragEvent<HTMLDivElement>) {
+        event.stopPropagation();
         event.preventDefault();
-        console.log(event.dataTransfer.files);
-        this.setState({ currentlyOver: false, processing: true });
-        setTimeout(() => {
-            this.setPercentage(100);
-        }, 100);
-        setTimeout(() => {
-            this.setState({processing: false})
-            setTimeout(() => {
-                this.setState({percentage: 0});
-            }, 2000)
-        }, 2000)
+
+        if (event.dataTransfer.files.length > 0) {
+            this.setState({ currentlyOver: false, processing: true });
+        } else {
+            this.setState({ currentlyOver: false });
+        }
+
+        Array.from(event.dataTransfer.files).forEach(async file => {
+            var reader = new FileReader();
+            reader.addEventListener('progress', e => {
+                var percentage = ((e.loaded || 0) / (e.total || 1)) * 100;
+                this.setPercentage(percentage);
+                console.log(percentage);
+            });
+            reader.addEventListener('load', e => {
+                console.log('done!');
+                this.setState({ percentage: 100 });
+                setTimeout(() => {
+                    this.setState({ processing: false });
+                    setTimeout(() => {
+                        this.setState({ percentage: 0 });
+                    }, 2000);
+                }, 1000);
+            });
+            reader.readAsBinaryString(file);
+        });
     }
 
     handleDragOver(event: React.DragEvent<HTMLDivElement>) {
+        event.stopPropagation();
         event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
         this.setState({ currentlyOver: true });
     }
 
@@ -46,15 +64,14 @@ class DropTarget extends React.Component<DropTargetProps, DropTargetState> {
     }
 
     setPercentage(num: number) {
-        this.setState({percentage: num});
+        this.setState({ percentage: num });
     }
 
     componentDidUpdate() {
-        this.areaRef.current?.style.setProperty("--percentage", this.state.percentage + "%");
+        this.areaRef.current?.style.setProperty('--percentage', this.state.percentage + '%');
     }
 
     render() {
-        
         return (
             <div
                 ref={this.areaRef}
