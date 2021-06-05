@@ -21,12 +21,14 @@
             &.down::before
                 transform: rotate(90deg) translateY(1px)
         &.nested
+            pointer-events: none
             opacity: 0
             line-height: 0
             max-height: 0
             transition-duration: 250ms
             transition-property: opacity line-height
             &.active
+                pointer-events: all
                 max-height: unset
                 opacity: 1
                 line-height: 1.2
