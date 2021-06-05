@@ -10,7 +10,12 @@ class File extends React.Component<FileProps, FileState> {
         this.state = {};
     }
     render() {
-        return <div>Hello world</div>;
+        return (
+            <>
+                <div className="drop-area">Drop world database file here</div>
+                <div className="drop-area">Drop blueprint file here</div>
+            </>
+        );
     }
 }
 

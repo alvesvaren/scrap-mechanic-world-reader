@@ -1,7 +1,9 @@
 import React from 'react';
-import { NavLink, NavLinkProps, Switch, RouteComponentProps, Route, RouteProps } from 'react-router-dom';
+import { NavLink, NavLinkProps, Switch, RouteComponentProps, Route, RouteProps, Redirect } from 'react-router-dom';
 import './app.sass';
 import File from './components/file/file';
+import Settings from './components/settings/settings';
+import { getPreference, setPreference } from './utils';
 export interface AppProps extends RouteComponentProps {}
 
 // export interface HashRouteProps extends RouteProps {
@@ -17,7 +19,7 @@ class App extends React.Component<AppProps, AppState> {
     leftColRef: React.Ref<HTMLElement>;
     constructor(props: AppProps) {
         super(props);
-        this.state = { resizing: false };
+        this.state = { resizing: false, leftSize: getPreference("leftSize") };
         this.leftColRef = React.createRef();
         this.handleDragging = this.handleDragging.bind(this);
         this.HashPreservingNavLink = this.HashPreservingNavLink.bind(this);
@@ -62,7 +64,9 @@ class App extends React.Component<AppProps, AppState> {
         }
     }
 
-    componentDidUpdate() {}
+    componentDidUpdate() {
+        setPreference("leftSize", this.state.leftSize);
+    }
 
     render() {
         return (
@@ -87,6 +91,7 @@ class App extends React.Component<AppProps, AppState> {
                         </ul>
                     </nav>
                     <this.HashRoute path='#file' component={File} />
+                    <this.HashRoute path='#settings' component={Settings} />
                 </aside>
                 <div className='resize-vertical-divider' onMouseDown={() => this.setState({ resizing: true })} />
                 <main id='right-col'>
@@ -106,6 +111,9 @@ class App extends React.Component<AppProps, AppState> {
                             </li>
                         </ul>
                     </nav>
+                    <Route exact path="/">
+                        <Redirect to="/bodies#file" />
+                    </Route>
                     <Switch></Switch>
                 </main>
             </div>
