@@ -8,7 +8,7 @@
     display: flex
     color: $white
 
-button, input[type="button"]
+button, input[type="button"], .button
     text-transform: uppercase
     border: 2px solid $border
     padding: 10px 20px
@@ -100,13 +100,13 @@ button, input[type="button"]
             border-top-right-radius: 5px
             transform: skewX(11.25deg)
             right: -6px
-        &.active
+        &.active, &.shining
             background-color: $accent
             color: $complement
             border-color: $accent
             &::after, &::before
                 border-color: inherit
-        &:not(.active):not(:disabled):hover
+        &:not(.active):not(:disabled):not(.shining):hover
             background-color: $shine-background
             color: $accent
             border-color: $accent
