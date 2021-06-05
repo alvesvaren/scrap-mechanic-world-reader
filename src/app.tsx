@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, NavLinkProps, Switch, RouteComponentProps, Route, RouteProps, Redirect } from 'react-router-dom';
 import './app.sass';
 import File from './components/file/file';
+import Hierarchy from './components/hierarchy/hierarchy';
 import Settings from './components/settings/settings';
 import { getPreference, setPreference } from './utils';
 export interface AppProps extends RouteComponentProps {}
@@ -92,6 +93,7 @@ class App extends React.Component<AppProps, AppState> {
                     </nav>
                     <this.HashRoute path='#file' component={File} />
                     <this.HashRoute path='#settings' component={Settings} />
+                    <this.HashRoute path='#hierarchy' component={Hierarchy} />
                 </aside>
                 <div className='resize-vertical-divider' onMouseDown={() => this.setState({ resizing: true })} />
                 <main id='right-col'>
