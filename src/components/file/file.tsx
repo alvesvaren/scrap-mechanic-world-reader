@@ -26,7 +26,7 @@ class File extends React.Component<FileProps, FileState> {
         return (
             <>
                 <DropTarget droppingText="Release to upload world" text="Drop world database file here"></DropTarget>
-                <DropTarget droppingText="Release to upload blueprint" text="Drop blueprint file here"></DropTarget>
+                <DropTarget droppingText="Release to upload blueprint" text="Drop blueprint folder here"></DropTarget>
             </>
         );
     }
