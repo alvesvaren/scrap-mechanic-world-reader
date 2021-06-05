@@ -1,7 +1,12 @@
 import React from 'react';
-import { NavLink, NavLinkProps, Switch, RouteComponentProps } from 'react-router-dom';
+import { NavLink, NavLinkProps, Switch, RouteComponentProps, Route, RouteProps } from 'react-router-dom';
 import './app.sass';
+import File from './components/file/file';
 export interface AppProps extends RouteComponentProps {}
+
+// export interface HashRouteProps extends RouteProps {
+//     path:
+// }
 
 export interface AppState {
     leftSize?: number;
@@ -17,7 +22,6 @@ class App extends React.Component<AppProps, AppState> {
         this.handleDragging = this.handleDragging.bind(this);
         this.HashPreservingNavLink = this.HashPreservingNavLink.bind(this);
         this.HashNavLink = this.HashNavLink.bind(this);
-        
     }
 
     HashNavLink(props: React.PropsWithoutRef<NavLinkProps>) {
@@ -28,8 +32,25 @@ class App extends React.Component<AppProps, AppState> {
         if (typeof props.to === 'object') {
             throw new TypeError('Objects as to attribute is currently not supported');
         }
-        console.log(window.location.hash);
         return <NavLink {...props} to={{ pathname: props.to.toString(), hash: this.props.location.hash }} />;
+    }
+
+    HashRoute(routeProps: RouteProps) {
+        let newRouteProps = { ...routeProps };
+        delete newRouteProps.path;
+        delete newRouteProps.component;
+        return (
+            <Route
+                {...newRouteProps}
+                render={(props: RouteComponentProps) => {
+                    console.log('Rendering!');
+                    if (props.location.hash === routeProps.path && routeProps.component) {
+                        return <routeProps.component {...props} />;
+                    }
+                    return <></>;
+                }}
+            />
+        );
     }
 
     handleDragging(e: React.MouseEvent<HTMLDivElement>) {
@@ -41,8 +62,7 @@ class App extends React.Component<AppProps, AppState> {
         }
     }
 
-    componentDidUpdate() {
-    }
+    componentDidUpdate() {}
 
     render() {
         return (
@@ -66,7 +86,7 @@ class App extends React.Component<AppProps, AppState> {
                             </li>
                         </ul>
                     </nav>
-                    <Switch></Switch>
+                    <this.HashRoute path='#file' component={File} />
                 </aside>
                 <div className='resize-vertical-divider' onMouseDown={() => this.setState({ resizing: true })} />
                 <main id='right-col'>
